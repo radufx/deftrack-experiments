@@ -1,0 +1,44 @@
+Model: "CNN"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_5 (InputLayer)           [(None, 512, 512, 3  0           []                               
+                                )]                                                                
+                                                                                                  
+ conv2d_20 (Conv2D)             (None, 512, 512, 32  896         ['input_5[0][0]']                
+                                )                                                                 
+                                                                                                  
+ max_pooling2d_8 (MaxPooling2D)  (None, 256, 256, 32  0          ['conv2d_20[0][0]']              
+                                )                                                                 
+                                                                                                  
+ conv2d_21 (Conv2D)             (None, 256, 256, 64  18496       ['max_pooling2d_8[0][0]']        
+                                )                                                                 
+                                                                                                  
+ max_pooling2d_9 (MaxPooling2D)  (None, 128, 128, 64  0          ['conv2d_21[0][0]']              
+                                )                                                                 
+                                                                                                  
+ conv2d_22 (Conv2D)             (None, 128, 128, 12  73856       ['max_pooling2d_9[0][0]']        
+                                8)                                                                
+                                                                                                  
+ up_sampling2d_8 (UpSampling2D)  (None, 256, 256, 12  0          ['conv2d_22[0][0]']              
+                                8)                                                                
+                                                                                                  
+ concatenate_8 (Concatenate)    (None, 256, 256, 19  0           ['up_sampling2d_8[0][0]',        
+                                2)                                'conv2d_21[0][0]']              
+                                                                                                  
+ conv2d_23 (Conv2D)             (None, 256, 256, 64  110656      ['concatenate_8[0][0]']          
+                                )                                                                 
+                                                                                                  
+ up_sampling2d_9 (UpSampling2D)  (None, 512, 512, 64  0          ['conv2d_23[0][0]']              
+                                )                                                                 
+                                                                                                  
+ concatenate_9 (Concatenate)    (None, 512, 512, 96  0           ['up_sampling2d_9[0][0]',        
+                                )                                 'conv2d_20[0][0]']              
+                                                                                                  
+ conv2d_24 (Conv2D)             (None, 512, 512, 1)  97          ['concatenate_9[0][0]']          
+                                                                                                  
+==================================================================================================
+Total params: 204,001
+Trainable params: 204,001
+Non-trainable params: 0
+__________________________________________________________________________________________________
